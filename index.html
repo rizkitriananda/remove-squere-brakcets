@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remove Square Brackets</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      textarea {
+        width: 80%;
+        height: 100px;
+        margin-bottom: 20px;
+        padding: 10px;
+        font-size: 16px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      #result {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Remove Square Brackets</h2>
+    <textarea id="inputText" placeholder="Masukkan teks di sini..."></textarea><br />
+    <button onclick="removeSquareBrackets()">Hapus Tanda Kurung Siku</button><br />
+    <div id="result"></div>
+
+    <script>
+      function removeSquareBrackets() {
+        var inputText = document.getElementById("inputText").value;
+        var resultDiv = document.getElementById("result");
+
+        // Menghapus tanda kurung siku beserta isinya menggunakan ekspresi reguler
+        var resultText = inputText.replace(/\[[^\]]*\]/g, "");
+
+        // Menampilkan hasil di div
+        resultDiv.innerHTML = "<strong>Hasil:</strong><br>" + resultText;
+      }
+    </script>
+  </body>
+</html>
