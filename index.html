@@ -43,7 +43,7 @@
         var resultDiv = document.getElementById("result");
 
         // Menghapus tanda kurung siku beserta isinya menggunakan ekspresi reguler
-        var resultText = inputText.replace(/\[[^\]]*\]/g, "");
+        var resultText = inputText.replace(/\*[[^\]]*\]*/g, "");
 
         // Menampilkan hasil di div
         resultDiv.innerHTML = "<strong>Hasil:</strong><br>" + resultText;
