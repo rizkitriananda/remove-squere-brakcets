@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Remove Asterisks</title>
-    <style>  
+    <title>Remove Asterisks & Format Answers</title>
+    <style>
       body {
         font-family: Arial, sans-serif;
         text-align: center;
@@ -28,25 +28,52 @@
       #result {
         font-size: 16.5px;
         padding: 50px 50px 0 50px;
+        text-align: left;
+        margin-top: 20px;
+      }
+
+      .question {
+        font-weight: bold;
+      }
+
+      .answer {
+        margin-left: 20px;
       }
     </style>
   </head>
   <body>
-    <h2>Remove Asterisks</h2>
-    <textarea id="inputText" placeholder="Masukkan teks di sini..."></textarea><br />
-    <button onclick="removeAsterisks()">Hapus Tanda Bintang</button><br />
+    <h2>Remove Asterisks & Format Answers</h2>
+    <textarea id="inputText" placeholder="Masukkan soal di sini..."></textarea><br />
+    <button onclick="removeAsterisksAndFormat()">Hapus Tanda Bintang & Format Jawaban</button><br />
     <div id="result"></div>
 
     <script>
-      function removeAsterisks() {
+      function removeAsterisksAndFormat() {
         var inputText = document.getElementById("inputText").value;
         var resultDiv = document.getElementById("result");
 
-        // Menghapus hanya tanda bintang tanpa menghapus isinya
-        var resultText = inputText.replace(/\*/g, "");
+        // Menghapus tanda bintang
+        var cleanedText = inputText.replace(/\*/g, "");
+
+        // Memecah teks menjadi soal dan jawaban berdasarkan pola angka dan tanda titik
+        var formattedText = cleanedText.replace(/(\d+\. [^]*?)(?=\d\. |$)/g, function(match) {
+          // Pisahkan soal dan jawaban dengan tanda "*"
+          var parts = match.split(/ (?=[^]*?[a-z]\.)/g);
+          
+          if (parts.length > 1) {
+            let question = `<div class="question">${parts[0]}</div>`;
+            let answers = parts.slice(1).map(function(answer, index) {
+              return `<div class="answer">${String.fromCharCode(97 + index)}. ${answer.trim()}</div>`;
+            }).join("");
+            
+            return question + answers;
+          } else {
+            return `<div class="question">${match.trim()}</div>`;
+          }
+        });
 
         // Menampilkan hasil di div
-        resultDiv.innerHTML = "<strong>Hasil:</strong><br>" + resultText;
+        resultDiv.innerHTML = "<strong>Hasil:</strong><br>" + formattedText;
       }
     </script>
   </body>
