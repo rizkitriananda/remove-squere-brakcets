@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Remove Square Brackets</title>
+    <title>Remove Asterisks</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -32,18 +32,18 @@
     </style>
   </head>
   <body>
-    <h2>Remove Square Brackets</h2>
+    <h2>Remove Asterisks</h2>
     <textarea id="inputText" placeholder="Masukkan teks di sini..."></textarea><br />
-    <button onclick="removeSquareBrackets()">Hapus Tanda Kurung Siku</button><br />
+    <button onclick="removeAsterisks()">Hapus Tanda Bintang</button><br />
     <div id="result"></div>
 
     <script>
-      function removeSquareBrackets() {
+      function removeAsterisks() {
         var inputText = document.getElementById("inputText").value;
         var resultDiv = document.getElementById("result");
 
-        // Menghapus tanda kurung siku beserta isinya menggunakan ekspresi reguler
-        var resultText = inputText.replace(/\*[[^\]]*\]*/g, "");
+        // Menghapus tanda bintang beserta isinya menggunakan ekspresi reguler
+        var resultText = inputText.replace(/\*[^*]*\*/g, "");
 
         // Menampilkan hasil di div
         resultDiv.innerHTML = "<strong>Hasil:</strong><br>" + resultText;
