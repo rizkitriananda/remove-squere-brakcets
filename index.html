@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Remove Asterisks</title>
-    <style>
+    <style>  
       body {
         font-family: Arial, sans-serif;
         text-align: center;
@@ -42,8 +42,8 @@
         var inputText = document.getElementById("inputText").value;
         var resultDiv = document.getElementById("result");
 
-        // Menghapus tanda bintang beserta isinya menggunakan ekspresi reguler
-        var resultText = inputText.replace(/\*[^*]*\*/g, "");
+        // Menghapus hanya tanda bintang tanpa menghapus isinya
+        var resultText = inputText.replace(/\*/g, "");
 
         // Menampilkan hasil di div
         resultDiv.innerHTML = "<strong>Hasil:</strong><br>" + resultText;
